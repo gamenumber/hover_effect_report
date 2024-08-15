@@ -1,0 +1,228 @@
+@charset "utf-8";
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+/* Design Reset */
+
+* {
+    /* p0+m0+bxbb */
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+ul, 
+ol, 
+li {
+    list-style: none; /* lisn */
+}
+
+img {
+    vertical-align: top; /* vat */
+}
+
+a {
+    text-decoration: none; /* tdn */
+}
+
+body {
+    font: 16px/1.6 Pretendard, sans-serif;
+    word-break: keep-all;
+    color: #666;
+    background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+    background-size: 300% 300%;
+    animation: gradientMove 20s ease infinite;
+}
+
+
+.items {
+    width: 1282px;
+    margin: 100px auto;
+}
+
+
+ul strong{
+    font-size: 24px;
+    color: #000;
+}
+
+ul {
+    display: flex; /* df */
+    flex-wrap: wrap;
+    text-align: center;
+    gap: 30px;
+}
+
+ul li {
+    /* 기존 스타일 유지 */
+    width: 407px;
+    height: 540px;
+    background: #b7b7b7;
+    padding: 70px 55px;
+    border: 1px solid #000;
+    position: relative;
+    overflow: hidden; /* 이미지가 li 밖으로 나가지 않도록 설정 */
+}
+
+ul li figure {
+    object-fit: cover;
+    width: 290px;
+    height: 350px;
+    margin: 0 auto;
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.5s ease; /* 부드러운 전환 효과 추가 */
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+ul li:hover {
+    transform: scale(1.1) rotate(-3deg); /* 살짝 회전하며 확대 */
+    background-color: #ffe4e1; /* 배경 색상 변경 */
+    border-color: #ff69b4; /* 테두리 색상 변경 */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* 그림자 추가 */
+    transition: transform 0.4s ease, background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease; /* 부드러운 전환 효과 */
+}
+
+ul li:hover figure {
+    animation: bounce 0.6s ease; /* bounce 애니메이션 추가 */
+}
+
+ul li::before {
+    content: "★"; /* 별 모양 */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #ff69b4;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+ul li:hover::before {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+ul li::after {
+    content: "❤️"; /* 작은 하트 추가 */
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.5);
+    font-size: 24px;
+    color: #ff1493;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+ul li:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.2); /* 약간 커지며 나타나도록 */
+}
+
+/* 바운스 애니메이션 */
+.bounce-animation {
+    animation: bounce 0.6s ease;
+}
+
+/* 회전 및 이동 애니메이션 */
+.rotate-animation {
+    animation: rotateAndMove 0.3s ease;
+}
+
+/* 버블 애니메이션 -> js+css */
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(10px, -20px) scale(1.1);
+    }
+}
+
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: inset 0 0 10px rgba(255,255,255,0.3);
+    animation: float 4s infinite ease-in-out;
+    pointer-events: none;
+}
+
+#bubble-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+ul li:nth-child(odd):hover figure {
+    animation: bounce 0.6s ease; /* 홀수 항목에 바운스 애니메이션 적용 */
+}
+
+ul li:nth-child(even):hover figure {
+    animation: rotateAndMove 1.5s ease; /* 짝수 항목에 회전 애니메이션 적용 */
+}
+
+/* 이미지 회전 및 이동 애니메이션 */
+@keyframes rotateAndMove {
+    0% {
+        transform: translateX(-50%) rotate(0deg);
+    }
+    20% {
+        transform: translateX(10%) rotate(120deg);
+    }
+}
+
+
+/* 바운스 애니메이션 */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-15px); /* 위로 튀어오르는 효과 */
+    }
+    60% {
+        transform: translateY(-10px); /* 다시 아래로 */
+    }
+}
+
+/* 그라데이션 무브 */
+@keyframes gradientMove {
+    0% {
+        background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+        background-size: 300% 300%;
+        background-position: 0% 0%;
+    }
+    25% {
+        background: linear-gradient(150deg, #fbc2eb, #a6c0fe);
+        background-size: 300% 300%;
+        background-position: 50% 50%;
+    }
+    50% {
+        background: linear-gradient(180deg, #a1c4fd, #c2e9fb);
+        background-size: 300% 300%;
+        background-position: 100% 100%;
+    }
+    75% {
+        background: linear-gradient(210deg, #c2e9fb, #a1c4fd);
+        background-size: 300% 300%;
+        background-position: 50% 50%;
+    }
+    100% {
+        background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+        background-size: 300% 300%;
+        background-position: 0% 0%;
+    }
+}
+
